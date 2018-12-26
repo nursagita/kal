@@ -1,30 +1,68 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title></title>
-</head>
-<body>
-	<ceter>
-		<table width="700" border="1">
-			<tr>
-				<td colspan="2" align="center"><h1>sistem informasi perpustakaan</h1>
-				</td>
-			</tr>
-			<td width="200">
-			<ul>
-			<li><a href="anggota.php">Angota</a></li>
-			<li><a href="buku.php">Buku</a></li>
-			<li><a href="pinjam.php">Pinjam</a></li>
-			<ul>
+<form method="post" action="" enctype="multipart/form-data">
+	<table>
+		<tr>
+			<td>Nama</td>
+			<td>:</td>
+			<td><input type="text" name="nama"></td>
+		</tr>
+		<tr>
+			<td>Alamat</td>
+			<td>:</td>
+			<td><input type="text" name="alamat"></td>
+		</tr>
+		<tr>
+			<td>Prodi</td>
+			<td>:</td>
+			<td><input type="text" name="prodi"></td>
+		</tr>
+		<tr>
+			<td>Kelas</td>
+			<td>:</td>
+			<td><input type="text" name="kelas"></td>
+		</tr>
+		<tr>
+			<td>Data Diri</td>
+			<td>:</td>
+			<td><input type="file" name="file"></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td><input type="submit" name="hasil" value="KIRIM"></td>
+		</tr>
+	</table>
+</form>
+<<?php 
+	if (isset($_POST["hasil"])) {
+		$nama = $_POST["nama"];
+		$alamat = $_POST["alamat"];
+		$prodi = $_POST["prodi"];
+		$kelas = $_POST["kelas"];
 
-			</td>
-			<td width = "200">selamat datang di sistem perpustakaan</td>
-			</tr>
-			<tr>
-			<td colspan="2" align="center">Nursagita</td>
-			</tr>
-			</table>
-			</center> 
+		$file = $_FILES["file"]["name"];
+		$tmp_name = $_FILES["file"]["tmp_name"];
 
-</body>
-</html>
+		move_uploaded_file($tmp_name, "images/".$file);
+	}
+ ?>
+
+ <table border="1" cellpadding="0">
+ 	<tr>
+ 		<td>Nama</td>
+ 		<td>Alamat</td>
+ 		<td>Prodi</td>
+ 		<td>Kelas</td>
+ 		<td>Foto</td>
+ 	</tr>
+ 	<tr>
+ 		<td><?php echo $nama ?></td>
+ 		<td><?php echo $alamat ?></td>
+ 		<td><?php echo $prodi ?></td>
+ 		<td><?php echo $kelas ?></td>
+
+ 		<td><img src="images/<?php echo $file ?>" style="width: 100px"></td>
+ </table>
+
+ <<?php 
+
+  ?>
